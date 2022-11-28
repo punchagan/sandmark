@@ -248,7 +248,7 @@ ocaml-versions/%.bench: depend check-parallel/% filter/% override_packages/% log
 		echo "  RUN_CONFIG_JSON=${RUN_CONFIG_JSON}";										\
 		echo "  RUN_BENCH_TARGET=${RUN_BENCH_TARGET}  (WRAPPER=${WRAPPER})";							\
 		echo "  PRE_BENCH_EXEC=${PRE_BENCH_EXEC}";										\
-		$(PRE_BENCH_EXEC) $(ENVIRONMENT) opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build -j 1 --profile=release				\
+		$(PRE_BENCH_EXEC) $(ENVIRONMENT) opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build --verbose -j 1 --profile=release				\
 		  --workspace=ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME) @$(RUN_BENCH_TARGET); ex=$$?;						\
 		mkdir -p _results/;												\
 		for i in `seq 1 $(ITER)`; do \
