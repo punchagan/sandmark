@@ -248,6 +248,11 @@ ocaml-versions/%.bench: depend check-parallel/% filter/% override_packages/% log
 		echo "  RUN_CONFIG_JSON=${RUN_CONFIG_JSON}";										\
 		echo "  RUN_BENCH_TARGET=${RUN_BENCH_TARGET}  (WRAPPER=${WRAPPER})";							\
 		echo "  PRE_BENCH_EXEC=${PRE_BENCH_EXEC}";										\
+		cd _build/5.1.0+trunk_1/benchmarks/decompress; \
+		./test_decompress.exe 64 524_288; \
+		taskset --cpu-list 5 ./test_decompress.exe 64 524_288; \
+		/app/_opam/5.1.0+trunk/bin/orun -o ../../test_decompress.64_524_288.orun.bench -- taskset --cpu-list 5 ./test_decompress.exe 64 524_288; \
+		cd -
 		$(PRE_BENCH_EXEC) $(ENVIRONMENT) opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build --verbose -j 1 --profile=release				\
 		  --workspace=ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME) @$(RUN_BENCH_TARGET); ex=$$?;						\
 		mkdir -p _results/;												\
