@@ -244,13 +244,13 @@ ocaml-versions/%.bench: depend check-parallel/% filter/% override_packages/% log
 	     echo "(context (opam (switch $(CONFIG_SWITCH_NAME)) (name $(CONFIG_SWITCH_NAME)_$$i)))"; \
 	   done } > ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME)
 	opam exec --switch $(CONFIG_SWITCH_NAME) -- rungen _build/$(CONFIG_SWITCH_NAME)_1 $(RUN_CONFIG_JSON) > runs_dune.inc
-	opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build --profile=release --workspace=ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME) @$(BUILD_BENCH_TARGET);
+	opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build --verbose --profile=release --workspace=ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME) @$(BUILD_BENCH_TARGET);
 	@{ if [ "$(BUILD_ONLY)" -eq 0 ]; then												\
 		echo "Executing benchmarks with:";											\
 		echo "  RUN_CONFIG_JSON=${RUN_CONFIG_JSON}";										\
 		echo "  RUN_BENCH_TARGET=${RUN_BENCH_TARGET}  (WRAPPER=${WRAPPER})";							\
 		echo "  PRE_BENCH_EXEC=${PRE_BENCH_EXEC}";										\
-		$(PRE_BENCH_EXEC) $(ENVIRONMENT) opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build -j 1 --profile=release				\
+		$(PRE_BENCH_EXEC) $(ENVIRONMENT) opam exec --switch $(CONFIG_SWITCH_NAME) -- dune build --verbose -j 1 --profile=release				\
 		  --workspace=ocaml-versions/.workspace.$(CONFIG_SWITCH_NAME) @$(RUN_BENCH_TARGET); ex=$$?;						\
 		mkdir -p _results/;												\
 		for i in `seq 1 $(ITER)`; do \
