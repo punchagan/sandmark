@@ -37,6 +37,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: 5.2.0+trunk+serial
         run: |
+          rm -rf _results/
           sudo apt-get update && sudo apt-get -y install wget pkg-config libgmp-dev m4 libdw-dev jq python3-pip autoconf jo libgmp-dev
           pip3 install intervaltree
           eval $(opam env)
@@ -51,6 +52,7 @@ jobs:
 
       - name: 5.2.0+trunk+parallel
         run: |
+          rm -rf _results/
           sudo apt-get update && sudo apt-get -y install wget pkg-config libgmp-dev m4 libdw-dev jq python3-pip autoconf jo libgmp-dev
           pip3 install intervaltree
           eval $(opam env)
