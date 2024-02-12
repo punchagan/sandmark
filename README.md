@@ -1,6 +1,7 @@
 [![Build Status](https://github.com/ocaml-bench/sandmark/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ocaml-bench/sandmark/actions/workflows/main.yml/badge.svg?branch=main)
 
-# Sandmark
+# Sandmark!!
+
 
 Sandmark is a suite of OCaml benchmarks and a collection of tools to configure
 different compiler variants, run and visualise the results.
